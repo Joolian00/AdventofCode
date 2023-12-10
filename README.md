@@ -1,2 +1,2 @@
-# Advent of Code 2023
-This is my repo for the event "Advent of Code"
+# Advent of Code
+This is my repo for the yearly event "Advent of Code"
