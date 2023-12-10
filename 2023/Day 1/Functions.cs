@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+﻿﻿using System.Text.RegularExpressions;
 
 namespace Day_1;
 
@@ -26,7 +26,7 @@ public static class Functions {
         List<int> calibrationValues = [];
         int finalCalibrationValue = 0;
 
-        string pattern = @"\d|one|two|three|four|five|six|seven|eight|nine";
+        string pattern = @"(?=(one|two|three|four|five|six|seven|eight|nine|\d))";
 
         Dictionary<string, string> wordToNumberMap = new Dictionary<string, string> {
             {"one", "1"},
@@ -39,27 +39,18 @@ public static class Functions {
             {"eight", "8"},
             {"nine", "9"}
         };
-        
+
         foreach (var line in lines) {
             MatchCollection matches = Regex.Matches(line, pattern);
             
-            Console.WriteLine(line);
-            
-            
-            if (wordToNumberMap.TryGetValue(matches[0].Value, out string value1)) {
-                
-            }
-            else {
-                value1 = matches[0].Value;
+            if (!wordToNumberMap.TryGetValue(matches[0].Groups[1].Value, out string value1)) {
+                value1 = matches[0].Groups[1].Value;
             }
 
-            if (wordToNumberMap.TryGetValue(matches[^1].Value, out string value2)) {
-                
+
+            if (!wordToNumberMap.TryGetValue(matches[^1].Groups[1].Value, out string value2)) {
+                value2 = matches[^1].Groups[1].Value;
             }
-            else {
-                value2 = matches[^1].Value;
-            }
-            Console.WriteLine(value1 + " and " + value2);
             
             calibrationValues.Add(int.Parse(value1+value2));
             
