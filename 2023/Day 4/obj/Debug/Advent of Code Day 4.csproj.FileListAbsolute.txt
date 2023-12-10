@@ -1,0 +1,8 @@
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\bin\Debug\Advent_of_Code_Day_4.exe
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\bin\Debug\Advent_of_Code_Day_4.pdb
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\obj\Debug\Advent of Code Day 4.csproj.AssemblyReference.cache
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\obj\Debug\Advent of Code Day 4.csproj.SuggestedBindingRedirects.cache
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\obj\Debug\Advent of Code Day 4.csproj.CoreCompileInputs.cache
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\obj\Debug\Advent_of_Code_Day_4.exe
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\obj\Debug\Advent_of_Code_Day_4.pdb
+C:\Users\Julian\Documents\GitHub\Advent of Code Day 4\Advent of Code Day 4\bin\Debug\input.txt
