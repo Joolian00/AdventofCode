@@ -1,9 +1,3 @@
-﻿using System;
+﻿// See https://aka.ms/new-console-template for more information
 
-namespace Day_1 {
-    internal class Program {
-        public static void Main() {
-            Console.WriteLine("Hello");
-        }
-    }
-}
+Console.WriteLine("Hello, World!");
