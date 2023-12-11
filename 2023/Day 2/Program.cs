@@ -3,7 +3,7 @@ using Day_2;
 
 List<string> fileSelection = ["testInput.txt", "input.txt"];
 
-string[] lines = File.ReadAllLines(fileSelection[0]);
+string[] lines = File.ReadAllLines(fileSelection[1]);
 
 
 PrintHorizontalLine('-', 30);
