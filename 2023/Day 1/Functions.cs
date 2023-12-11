@@ -5,30 +5,24 @@ namespace Day_1;
 public static class Functions {
     public static int PartOne(string[] lines) {
         string pattern = @"\d";
-
-        List<int> calibrationValues = [];
+        
         int finalCalibrationValue = 0;
         
         foreach (var line in lines) {
             MatchCollection matches = Regex.Matches(line, pattern);
             string calibrationValueString = matches[0].Value + matches[^1].Value;
-            calibrationValues.Add(int.Parse(calibrationValueString));
-        }
-
-        foreach (var value in calibrationValues) {
-            finalCalibrationValue += value;
+            finalCalibrationValue += int.Parse(calibrationValueString);
         }
         
         return finalCalibrationValue;
     }
 
-    public static int PartTwo(string[] lines) {
-        List<int> calibrationValues = [];
+    public static int PartTwo(IEnumerable<string> lines) {
         int finalCalibrationValue = 0;
 
         string pattern = @"(?=(one|two|three|four|five|six|seven|eight|nine|\d))";
 
-        Dictionary<string, string> wordToNumberMap = new Dictionary<string, string> {
+        Dictionary<string, string> wordToNumberMap = new() {
             {"one", "1"},
             {"two", "2"},
             {"three", "3"},
@@ -52,16 +46,10 @@ public static class Functions {
                 value2 = matches[^1].Groups[1].Value;
             }
             
-            calibrationValues.Add(int.Parse(value1+value2));
-            
-            //string calibrationValueString = matches[0].Value + matches[^1].Value;
-            //calibrationValues.Add(int.Parse(calibrationValueString));
+            finalCalibrationValue += int.Parse(value1+value2);
+
         }
         
-        foreach (var value in calibrationValues) {
-            finalCalibrationValue += value;
-        }
-
         return finalCalibrationValue;
     }
 
