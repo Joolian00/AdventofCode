@@ -37,11 +37,11 @@ public static class Functions {
         foreach (var line in lines) {
             MatchCollection matches = Regex.Matches(line, pattern);
             
-            if (!wordToNumberMap.TryGetValue(matches[0].Groups[1].Value, out string value1)) {
+            if (!wordToNumberMap.TryGetValue(matches[0].Groups[1].Value, out string? value1)) {
                 value1 = matches[0].Groups[1].Value;
             }
             
-            if (!wordToNumberMap.TryGetValue(matches[^1].Groups[1].Value, out string value2)) {
+            if (!wordToNumberMap.TryGetValue(matches[^1].Groups[1].Value, out string? value2)) {
                 value2 = matches[^1].Groups[1].Value;
             }
             
