@@ -4,39 +4,47 @@ namespace Day_2;
 
 public static class Functions {
     public static int PartOne(string[] lines) {
-        string[] patterns = new[]
-        {
-            @"(\d+) (red)",  
-            @"(\d+) (green)",
-            @"(\d+) (blue)"
-        };
-
-        Match gameIDMatch;
+        string regpattern = @"(\d+) (\w+)";
 
         int gameCounter = 0;
         
         foreach (var line in lines) {
-            int[] rgbValues = new[] { 0, 0, 0 };
-            gameIDMatch = Regex.Match(line, @"Game (\d+)");
-        
-            for (int j = 0; j < patterns.Length; j++) {
-                MatchCollection matches = Regex.Matches(line, patterns[j]);
+            Match gameIdMatch = Regex.Match(line, @"Game (\d+)");
+            int gameId = int.Parse(gameIdMatch.Groups[1].Value);
+            gameCounter += gameId;
             
-                for (int i = 0; i < matches.Count; i++) {
-                    rgbValues[j] += int.Parse(matches[i].Groups[1].Value);
-                }
-            }
+            Dictionary<string, int> rgbValuesDic = new Dictionary<string, int> {
+                ["red"] = 0,
+                ["green"] = 0,
+                ["blue"] = 0
+            };
+            
+            string[] gameSets = line.Split(';');
 
-            if (!(rgbValues[0] > 12 || rgbValues[1] > 13 || rgbValues[2] > 14)) {
-                Console.WriteLine($"Game number {gameIDMatch.Groups[1].Value} is possible");
+            foreach (var set in gameSets) {
+                MatchCollection matchColl = Regex.Matches(set, regpattern);
+
+                foreach (Match match in matchColl) {
+                    string colorName = match.Groups[2].Value;
+                    int rgbValue = int.Parse(match.Groups[1].Value);
+                    rgbValuesDic[colorName] = rgbValue;
+                }
+
+                if (IsGamePossible(rgbValuesDic, 12, 13, 14)) continue;
                 
-                gameCounter += int.Parse(gameIDMatch.Groups[1].Value);
+                gameCounter -= int.Parse(gameIdMatch.Groups[1].Value);
+                rgbValuesDic["red"] = 0;
+                rgbValuesDic["green"] = 0;
+                rgbValuesDic["blue"] = 0;
+                break;
             }
         }
-
-        
         
         return gameCounter;
+    }
+
+    private static bool IsGamePossible(Dictionary<string, int> rgbValues, int redLimit, int greenLimit, int blueLimit) {
+        return rgbValues["red"] <= redLimit && rgbValues["green"] <= greenLimit && rgbValues["blue"] <= blueLimit;
     }
 
     public static int PartTwo(IEnumerable<string> lines) {
