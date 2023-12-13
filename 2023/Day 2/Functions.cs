@@ -43,7 +43,7 @@ public static class Functions {
         return gameCounter;
     }
 
-    private static bool IsGamePossible(Dictionary<string, int> rgbValues, int redLimit, int greenLimit, int blueLimit) {
+    static bool IsGamePossible(Dictionary<string, int> rgbValues, int redLimit, int greenLimit, int blueLimit) {
         return rgbValues["red"] <= redLimit && rgbValues["green"] <= greenLimit && rgbValues["blue"] <= blueLimit;
     }
 
@@ -53,8 +53,6 @@ public static class Functions {
         int gameCounter = 0;
         
         foreach (var line in lines) {
-            int gamePower = 1;
-            
             Dictionary<string, int> rgbValuesDic = new Dictionary<string, int> {
                 ["red"] = 0,
                 ["green"] = 0,
@@ -63,7 +61,7 @@ public static class Functions {
             
             string[] gameSets = line.Split(';');
 
-            foreach (var set in gameSets) {
+            foreach (string set in gameSets) {
                 MatchCollection matchColl = Regex.Matches(set, pattern);
 
                 foreach (Match match in matchColl) {
@@ -75,14 +73,10 @@ public static class Functions {
                     }
                 }
             }
-            foreach (var dic in rgbValuesDic) {
-                gamePower *= dic.Value;
-            }
 
+            int gamePower = rgbValuesDic.Aggregate(1, (current, colorValuePair) => current * colorValuePair.Value);
             gameCounter += gamePower;
         }
-        
         return gameCounter;
     }
-
 }
