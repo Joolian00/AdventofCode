@@ -4,7 +4,7 @@ namespace Day_2;
 
 public static class Functions {
     public static int PartOne(string[] lines) {
-        string regpattern = @"(\d+) (\w+)";
+        const string pattern = @"(\d+) (\w+)";
 
         int gameCounter = 0;
         
@@ -22,7 +22,7 @@ public static class Functions {
             string[] gameSets = line.Split(';');
 
             foreach (var set in gameSets) {
-                MatchCollection matchColl = Regex.Matches(set, regpattern);
+                MatchCollection matchColl = Regex.Matches(set, pattern);
 
                 foreach (Match match in matchColl) {
                     string colorName = match.Groups[2].Value;
@@ -48,9 +48,41 @@ public static class Functions {
     }
 
     public static int PartTwo(IEnumerable<string> lines) {
+        const string pattern = @"(\d+) (\w+)";
+
+        int gameCounter = 0;
         
+        foreach (var line in lines) {
+            int gamePower = 1;
+            
+            Dictionary<string, int> rgbValuesDic = new Dictionary<string, int> {
+                ["red"] = 0,
+                ["green"] = 0,
+                ["blue"] = 0
+            };
+            
+            string[] gameSets = line.Split(';');
+
+            foreach (var set in gameSets) {
+                MatchCollection matchColl = Regex.Matches(set, pattern);
+
+                foreach (Match match in matchColl) {
+                    string colorName = match.Groups[2].Value;
+                    int rgbValue = int.Parse(match.Groups[1].Value);
+                    
+                    if (rgbValue > rgbValuesDic[colorName]) {
+                        rgbValuesDic[colorName] = rgbValue;
+                    }
+                }
+            }
+            foreach (var dic in rgbValuesDic) {
+                gamePower *= dic.Value;
+            }
+
+            gameCounter += gamePower;
+        }
         
-        return 0;
+        return gameCounter;
     }
 
 }
