@@ -13,7 +13,7 @@ public static class Functions {
             int gameId = int.Parse(gameIdMatch.Groups[1].Value);
             gameCounter += gameId;
             
-            Dictionary<string, int> rgbValuesDic = new Dictionary<string, int> {
+            Dictionary<string, int> rgbValuesDic = new() {
                 ["red"] = 0,
                 ["green"] = 0,
                 ["blue"] = 0
@@ -31,8 +31,8 @@ public static class Functions {
                 }
 
                 if (IsGamePossible(rgbValuesDic, 12, 13, 14)) continue;
-                
-                gameCounter -= int.Parse(gameIdMatch.Groups[1].Value);
+
+                gameCounter -= gameId;
                 rgbValuesDic["red"] = 0;
                 rgbValuesDic["green"] = 0;
                 rgbValuesDic["blue"] = 0;
@@ -43,7 +43,7 @@ public static class Functions {
         return gameCounter;
     }
 
-    static bool IsGamePossible(Dictionary<string, int> rgbValues, int redLimit, int greenLimit, int blueLimit) {
+    private static bool IsGamePossible(Dictionary<string, int> rgbValues, int redLimit, int greenLimit, int blueLimit) {
         return rgbValues["red"] <= redLimit && rgbValues["green"] <= greenLimit && rgbValues["blue"] <= blueLimit;
     }
 
