@@ -1,9 +1,9 @@
 using System.Diagnostics;
-using Day_1;
+using Day_3;
 
-List<string> FileSelection = ["testInput.txt", "input.txt"];
+List<string> fileSelection = ["testInput.txt", "input.txt"];
 
-string[] lines = File.ReadAllLines(FileSelection[1]);
+string[] lines = File.ReadAllLines(fileSelection[1]);
 
 
 PrintHorizontalLine('-', 30);
